@@ -1,8 +1,8 @@
 /*
  * CSE 351 Lab 1a (Pointers in C)
  *
- * Name(s):  
- * NetID(s): 
+ * Name(s): Aaron Hong
+ * NetID(s): ahong02
  *
  * WARNING: Do not include the <stdio.h> header; it confuses the dlc compiler.
  * You can still use printf for debugging without including <stdio.h>. The
