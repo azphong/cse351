@@ -100,9 +100,11 @@ int int_size() {
   int int_array[10];
   int* int_ptr1;
   int* int_ptr2;
-  // Write code to compute size of an integer.
+  
+  int_ptr1 = int_array;
+  int_ptr2 = int_ptr1 + 1;
 
-  return 2;
+  return (char*)int_ptr2 - (char*)int_ptr1;
 }
 
 /*
@@ -123,9 +125,11 @@ int double_size() {
   double doub_array[10];
   double* doub_ptr1;
   double* doub_ptr2;
-  // Write code to compute size of a double.
+  
+  doub_ptr1 = doub_array;
+  doub_ptr2 = doub_ptr1 + 1;
 
-  return 2;
+  return (char*)doub_ptr2 - (char*)doub_ptr1;
 }
 
 /*
@@ -148,7 +152,10 @@ int pointer_size() {
   double** ptr_ptr2;
   // Write code to compute size of a pointer.
 
-  return 2;
+  ptr_ptr1 = ptr_array;
+  ptr_ptr2 = ptr_ptr1 + 1;
+
+  return (char*)ptr_ptr2 - (char*)ptr_ptr1;
 }
 
 /*
@@ -166,7 +173,9 @@ int pointer_size() {
  *   Unary integer operators: ~, -
  */
 void swap_ints(int* ptr1, int* ptr2) {
-  // Your code here
+  int tmp = *ptr1;
+  *ptr1 = *ptr2;
+  *ptr2 = tmp;
 }
 
 /*
@@ -190,7 +199,10 @@ int change_value() {
   // Remember not to use constants greater than 255.
   // Remember to use * to dereference. You cannot use '[<index>]' syntax.
 
-  return int_array[5];
+  int_ptr1 += 5;
+  *int_ptr1 = 255;
+  *int_ptr1 += 96;
+  return *int_ptr1;
 }
 
 /*
@@ -212,8 +224,11 @@ int change_value() {
  *   Unary integer operators: -
  */
 int within_same_block(int* ptr1, int* ptr2) {
-  // Your code here
-  return 2;
+  int a = (long)ptr1;
+  int b = (long)ptr2;
+  a >>= 6;
+  b >>= 6;
+  return (a == b);
 }
 
 /*
@@ -236,8 +251,10 @@ int within_same_block(int* ptr1, int* ptr2) {
  *   Unary integer operators: -
  */
 int within_array(int* int_array, int size, int* ptr) {
-  // Your code here
-  return 2;
+  int* largest = int_array + size;
+  int sign1 = ((char*)largest - 1 - (char*)ptr) >> 31;
+  int sign2 = ((char*)ptr - (char*)int_array) >> 31;
+  return sign1 == sign2;
 }
 
 /*
@@ -260,8 +277,12 @@ int within_array(int* int_array, int size, int* ptr) {
  *   Unary integer operators: ~, -
  */
 int string_length(char* s) {
-  // Your code here
-  return 2;
+  int length = 0;
+  while(*s != '\0'){
+	  length++;
+	  s++;
+  }
+  return length;
 }
 
 /*
@@ -285,7 +306,14 @@ int string_length(char* s) {
  */
 int endian_experiment(int* ptr) {
   char* byte_ptr;
-  // Your code here
+  byte_ptr = (char*) ptr;
+  *byte_ptr = 0x77;
+  byte_ptr++;
+  *byte_ptr = 0x5C;
+  byte_ptr++;
+  *byte_ptr = 0x05;
+  byte_ptr++;
+  *byte_ptr = 0x00;
   return *ptr;
 }
 
@@ -323,6 +351,17 @@ int endian_experiment(int* ptr) {
  *   Unary integer operators: ~, -
  */
 void selection_sort(int arr[], int arr_length) {
-  int i, j, min_index;
-  // Your code here
+  int i, j;
+  int* ip = arr;
+  int* jp;
+  for (i = 0; i < arr_length - 1; i++){
+	jp = ip + 1;
+	for (j = i + 1; j < arr_length; j++){
+		if (*jp < *ip){
+			swap_ints(ip, jp);
+		}
+		jp++;
+	} 
+	ip++;
+  }
 }
