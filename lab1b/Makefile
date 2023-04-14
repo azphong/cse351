@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g -no-pie
 AISLE_FILES = aisle_manager.o .aisle_util.o store_util.o aisle_test.c
 STORE_FILES = aisle_manager.o .aisle_util.o .store_util.o store_util.o store_client.c store_test.c
 
