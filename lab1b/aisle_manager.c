@@ -1,8 +1,8 @@
 /*
  * CSE 351 Lab 1b (Manipulating Bits in C)
  *
- * Name(s):  
- * NetID(s): 
+ * Name(s): Aaron Hong 
+ * NetID(s): ahong02
  *
  * ----------------------------------------------------------------------------
  * Overview
