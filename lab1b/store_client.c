@@ -1,8 +1,8 @@
 /*
  * CSE 351 Lab 1b (Manipulating Bits in C)
  *
- * Name(s):  
- * NetID(s): 
+ * Name(s): Aaron Hong 
+ * NetID(s): ahong02
  *
  * This is a file for managing a store of various aisles, represented by an
  * array of 64-bit integers. See aisle_manager.c for details on the aisle
@@ -25,6 +25,9 @@
 // Number of items in the stockroom (2^6 different id combinations)
 #define NUM_ITEMS 64
 
+// Number of items in each section
+#define NUM_SPACES 10
+
 // Global array of aisles in this store. Each unsigned long in the array
 // represents one aisle.
 unsigned long aisles[NUM_AISLES];
@@ -43,6 +46,19 @@ int stockroom[NUM_ITEMS];
  */
 void refill_from_stockroom() {
   // TODO: implement this function
+  for(int a = 0; a < NUM_AISLES; a++){
+	for(int s = 0; s < SECTIONS_PER_AISLE; s++){
+		int spaces = NUM_SPACES - num_items(&aisles[a], s);
+		int* stock = &stockroom[get_id(&aisles[a], s)];
+		if(*stock > spaces){
+			add_items(&aisles[a], s, NUM_SPACES);
+			*stock -= spaces;
+		} else {
+			add_items(&aisles[a], s, *stock);
+			*stock = 0;
+		}
+	}
+  }
 }
 
 /* Remove at most num items from sections with the given item id, starting with
