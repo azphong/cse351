@@ -182,6 +182,15 @@ void set_id(unsigned long* aisle, int index, unsigned short new_id) {
  */
 void toggle_space(unsigned long* aisle, int index, int space_index) {
   // TODO: implement this method
+  short* section = (short*)aisle + index;
+  int toggle_mask = 2^space_index;
+  short new_section;
+  if(*section & toggle_mask > 0){
+	  new_section = *section - toggle_mask;
+  } else {
+	  new_section = *section + toggle_mask;
+  }
+  *section = new_section;
 }
 
 /* Given a pointer to an aisle and a section index, return the number of items
