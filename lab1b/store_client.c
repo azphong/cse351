@@ -71,7 +71,31 @@ void refill_from_stockroom() {
  */
 int fulfill_order(unsigned short id, int num) {
   // TODO: implement this function
-  return 0;
+  int to_remove = num;
+  for(int a = 0; a < NUM_AISLES; a++){
+	for(int s = 0; s < SECTIONS_PER_AISLE; s++){
+		if(get_id(&aisles[a], s) == id){
+			int section_items = num_items(&aisles[a], s);
+			if(to_remove > section_items){
+				remove_items(&aisles[a], s, section_items);
+				to_remove -= section_items;
+			} else {
+				remove_items(&aisles[a], s, to_remove);
+				to_remove = 0;
+			}
+		}
+	}
+  }
+  if(to_remove > 0){
+	if(to_remove > stockroom[id]){
+		to_remove -= stockroom[id];
+		stockroom[id] = 0;
+	} else {
+		stockroom[id] -= to_remove;
+		to_remove = 0;
+	}
+  }
+  return num - to_remove;
 }
 
 /* Return a pointer to the first section in the aisles with the given item id
@@ -81,6 +105,13 @@ int fulfill_order(unsigned short id, int num) {
  */
 unsigned short* empty_section_with_id(unsigned short id) {
   // TODO: implement this function
+  for(int a = 0; a < NUM_AISLES; a++){
+	for(int s = 0; s < SECTIONS_PER_AISLE; s++){
+		if((get_id(&aisles[a], s) == id) && (num_items(&aisles[a], s) == 0)){
+			return (short*)&aisles[a] + s;
+		}
+	}
+  }
   return NULL;
 }
 
@@ -90,5 +121,15 @@ unsigned short* empty_section_with_id(unsigned short id) {
  */
 unsigned short* section_with_most_items() {
   // TODO: implement this function
-  return NULL;
+  int max = num_items(&aisles[0], 0);
+  short* result = (short*)&aisles[0];
+  for(int a = 0; a < NUM_AISLES; a++){
+	for(int s = 0; s < SECTIONS_PER_AISLE; s++){
+		if(num_items(&aisles[a], s) > max){
+			max = num_items(&aisles[a], s);
+			result = (short*)&aisles[a] + s;
+		}
+	}
+  }
+  return result;
 }

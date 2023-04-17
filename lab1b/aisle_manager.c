@@ -165,6 +165,7 @@ void set_spaces(unsigned long* aisle, int index, unsigned short new_spaces) {
  * Can assume the index is a valid index (0-3 inclusive).
  */
 void set_id(unsigned long* aisle, int index, unsigned short new_id) {
+  // TODO: implement this method
   short* section = (short*)aisle + index;
   short new_section = (new_id << NUM_SPACES) + get_spaces(aisle, index);
   if(new_id <= (ID_MASK >> NUM_SPACES)){
