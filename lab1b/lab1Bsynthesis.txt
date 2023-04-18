@@ -1,26 +1,31 @@
 ******************************
 * Lab 1b Synthesis Questions *
 ******************************
-Name(s):  
-NetID(s): 
+Name(s): Aaron Hong
+NetID(s): ahong02
 
 
 -----------------------------------------------------------
-1) Benefit 1:
+1) Benefit 1: Each section has a higher item capacity.
 
-   Benefit 2:
+   Benefit 2: More possible item ids.
 
-   Benefit 3:
+   Benefit 3: Easier to determine number of items in a section.
 
-   Drawback:
-
------------------------------------------------------------
-2) Difference? Y/N
-
-   Explain:
+   Drawback: No way to tell where items are placed.
 
 -----------------------------------------------------------
-3) Explain:
+2) Difference? Y/N -> sometimes Y, sometimes N
 
-   Considerations:
+   Explain: If y is an unsigned integer, then 0xFFFFFFFF and -1 are different.
+	If y is signed, then they are not different. This is because signed 
+	integers are in two's complement, meaning the MSB of the integer denotes
+	the sign of the integer. 
+
+-----------------------------------------------------------
+3) Explain: There are gaps in the floating point data type's ability to represent
+	numbers that could result in misleading equality tests.
+
+   Considerations: The comparison threshold should take into consideration the size
+	of the numbers being compared such that the size of any gaps is accounted for.
 
