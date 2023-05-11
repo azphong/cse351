@@ -1,0 +1,30 @@
+*****************************
+* Lab 3 Synthesis Questions *
+*****************************
+Name(s): Aaron Hong 
+NetID(s): ahong02
+
+
+-----------------------------------------------------------
+1) Explain: The segmentation fault is caused when the rip register
+is corrupted. This causes the segmentation fault because the 
+function doesn't know where to return to after it's done executing.
+The instruction that causes the segmentation fault is the return
+instruction at the end of the part_2 function. 
+
+-----------------------------------------------------------
+2) Instruction 1: <part_2 + 14> lea 0x10(%rsp),%rax
+   Purpose: allocates stack space for the array
+
+   Instruction 2: <part_2 + 0> sub $0x48,%rsp
+   Purpose: allocates stack space for the function
+
+   Minimum length to cause a seg fault: 15
+   Calculation: (function stack size - array start offset) / (4 bytes/int)
+	= (0x48 - 0x10) / 4 = 0x38 / 4 = 56 / 4 = 14 max -> 15 seg fault
+-----------------------------------------------------------
+3) Agree or Disagree: Disagree
+   Explain: You could still get segmentation faults if the array seeps
+	out of the top of the heap and into the bottom of the stack.
+
+-----------------------------------------------------------
