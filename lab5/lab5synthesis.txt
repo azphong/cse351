@@ -1,0 +1,22 @@
+*****************************
+* Lab 5 Synthesis Questions *
+*****************************
+Name(s): Aaron Hong 
+NetID(s): ahong02
+
+
+-----------------------------------------------------------
+1) Alignment: at least 32 bytes, 16 byte aligned
+   Reasoning: By calling malloc twice and calculating the number of bytes 
+    between the addresses of the pointers returned, I was able to determine 
+    that malloc(1) through malloc(24) all allocate 32 bytes, malloc(25) 
+    through malloc(40) all allocate 48 bytes, and malloc(41) through 
+    malloc(56) all allocate 64 bytes.
+-----------------------------------------------------------
+2) Boundary Tag Size: 8 bytes 
+   Reasoning: The data I got for question 1 shows that the largest amount
+    of bytes that can be fit into 32 bytes with malloc is 24 bytes, the 
+    largest amount of bytes that can be fit into 48 bytes with malloc is 
+    40 bytes, and the largest amount of bytes that can be fit into 64 bytes
+    with malloc is 56 bytes. This shows that 8 bytes are needed for the tag.
+-----------------------------------------------------------
